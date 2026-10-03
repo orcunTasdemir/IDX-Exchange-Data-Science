@@ -8,6 +8,8 @@ Predicting `ClosePrice` (final sale price) for California single-family homes fr
 |---|---|
 | `py/` | Week 1 Trestle API pull scripts (`crmls_sold.py`, `crmls_listed.py`) |
 | `notebooks/01_exploration.ipynb` | Week 2: exploratory data analysis of the sold data |
+| `reports/01_exploration_memo.md` | Week 2: findings memo ([read it here](reports/01_exploration_memo.md)) |
+| `reports/figures/` | Charts produced by the notebooks |
 | `requirements.txt` | Pinned Python environment |
 
 ## Data
@@ -26,5 +28,5 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipy
 ## Progress
 
 - [x] Week 1: setup, data access
-- [x] Week 2: exploration (`01_exploration.ipynb`)
+- [x] Week 2: exploration (`01_exploration.ipynb`, [findings memo](reports/01_exploration_memo.md))
 - [ ] Week 3: preprocessing (`02_preprocessing.ipynb`)

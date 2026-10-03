@@ -34,3 +34,6 @@ env/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Local Claude Code config (launch.json holds a local Jupyter token)
+.claude/
