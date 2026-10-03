@@ -207,7 +207,7 @@ The data covers 62 counties, but sales concentrate in Southern California: Los A
 
 Price per square foot divides out the size of the house, so its five-fold range across these counties, from $234 in Kern to $1,168 in San Mateo, measures how much location alone changes the price of the same amount of house.
 
-The map shows the median price per square foot in small hexagonal cells, drawn only for cells with at least 5 sales. The most expensive areas are the San Francisco Bay Area (especially the Peninsula and Santa Clara County) and the coast of Los Angeles and Orange counties. Prices fall quickly moving inland.
+The left panel of the map shows the median price per square foot in small hexagonal cells, drawn only for cells with at least 5 sales. The right panel is a street map of exactly the same area, so each cell can be matched to a place by looking across. The most expensive areas are the San Francisco Bay Area (especially the Peninsula and Santa Clara County) and the coast of Los Angeles and Orange counties. Prices fall quickly moving inland.
 
 ![Median price per square foot by location](figures/price_per_sqft_map.png)
 
@@ -254,4 +254,4 @@ The findings above translate into the following preprocessing steps.
 
 1. Install the packages listed in [`requirements.txt`](../requirements.txt) (Python 3.11).
 2. Put the monthly `CRMLSSold*.csv` files in a folder named `csv/` at the top of the repository. The data is kept out of the repository.
-3. Run `jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb`. This recreates every table in the notebook and every chart in `reports/figures/`.
+3. Run `jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb`. This recreates every table in the notebook and every chart in `reports/figures/`. The street map is downloaded from Esri while the notebook runs, so an internet connection is needed.
