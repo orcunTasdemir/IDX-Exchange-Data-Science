@@ -1,0 +1,128 @@
+{
+  "data_snapshot": {
+    "files": 28,
+    "first_file": "CRMLSSold202401_filled.csv",
+    "last_file": "CRMLSSold202604.csv",
+    "raw_rows": 615707,
+    "clean_rows": 308862
+  },
+  "n_train_months": 12,
+  "final": {
+    "train_months": [
+      "2025-04",
+      "2025-05",
+      "2025-06",
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02",
+      "2026-03"
+    ],
+    "test_month": "2026-04",
+    "outlier_bounds": {
+      "price_low": 185000.0,
+      "price_high": 8600000.0,
+      "ppsf_low": 143.61991301646475,
+      "ppsf_high": 2299.3216506500894
+    },
+    "train_rows": 128330,
+    "test_rows": 12268
+  },
+  "tuning": {
+    "train_months": [
+      "2025-03",
+      "2025-04",
+      "2025-05",
+      "2025-06",
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02"
+    ],
+    "validation_month": "2026-03",
+    "outlier_bounds": {
+      "price_low": 189000.0,
+      "price_high": 8500000.0,
+      "ppsf_low": 144.15010589848816,
+      "ppsf_high": 2295.432715792571
+    }
+  },
+  "window_selection": {
+    "validation_months": [
+      "2026-01",
+      "2026-02",
+      "2026-03"
+    ],
+    "windows_tried": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      9,
+      12,
+      18,
+      24
+    ],
+    "rule": "shortest window within 0.1 MdAPE points of the best, for both models",
+    "mean_validation_mdape": {
+      "Linear regression": {
+        "1": 12.716,
+        "2": 12.27,
+        "3": 11.974,
+        "4": 11.826,
+        "6": 11.695,
+        "9": 11.519,
+        "12": 11.513,
+        "18": 11.455,
+        "24": 11.432
+      },
+      "Gradient boosting": {
+        "1": 9.752,
+        "2": 9.036,
+        "3": 8.7,
+        "4": 8.548,
+        "6": 8.458,
+        "9": 8.378,
+        "12": 8.285,
+        "18": 8.237,
+        "24": 8.295
+      }
+    }
+  },
+  "features": [
+    "LivingArea",
+    "LotSizeSquareFeet",
+    "BedroomsTotal",
+    "BathroomsTotalInteger",
+    "YearBuilt",
+    "GarageSpaces",
+    "Stories",
+    "AssociationFeeMonthly",
+    "Latitude",
+    "Longitude",
+    "PoolPrivateYN",
+    "ViewYN",
+    "AttachedGarageYN",
+    "FireplaceYN",
+    "NewConstructionYN",
+    "CountyOrParish",
+    "ZIP5"
+  ],
+  "target": "ClosePrice",
+  "excluded_leakage_columns": [
+    "ListPrice",
+    "OriginalListPrice",
+    "DaysOnMarket",
+    "BuyerAgencyCompensation",
+    "BuyerAgencyCompensationType"
+  ]
+}
