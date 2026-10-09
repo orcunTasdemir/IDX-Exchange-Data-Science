@@ -6,6 +6,7 @@
     "raw_rows": 615707,
     "clean_rows": 308862
   },
+  "random_seed": 42,
   "n_train_months": 12,
   "final": {
     "train_months": [

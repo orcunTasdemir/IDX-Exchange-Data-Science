@@ -11,6 +11,7 @@ The work is divided by whether a step needs to learn anything from data:
   learned when it is fit on the training rows, never on evaluation rows.
 """
 from pathlib import Path
+import random
 import re
 
 import numpy as np
@@ -23,7 +24,18 @@ from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler, TargetEncoder
 
+# The one seed for the project. Every random step passes it explicitly
+# (random_state=RANDOM_STATE); set_global_seed() also covers any code that
+# draws from Python's or NumPy's global random generators.
 RANDOM_STATE = 42
+
+
+def set_global_seed(seed=RANDOM_STATE):
+    """Seed Python's and NumPy's global random generators."""
+    random.seed(seed)
+    np.random.seed(seed)
+    return seed
+
 
 # California bounding box; coordinates outside it are treated as missing
 CA_LAT = (32.4, 42.1)

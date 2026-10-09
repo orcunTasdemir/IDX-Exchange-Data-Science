@@ -12,6 +12,7 @@ Predicting `ClosePrice` (final sale price) for California single-family homes fr
 | `notebooks/02_preprocessing.ipynb` | Week 3: cleaning, encoding, chronological split, choice of training window |
 | `reports/02_preprocessing_memo.md` | Week 3: preprocessing memo ([read it here](reports/02_preprocessing_memo.md)) |
 | `src/preprocessing.py` | Cleaning, splitting and preprocessing code shared by all notebooks |
+| `scripts/run_notebooks.py` | Re-runs the notebooks reproducibly |
 | `config/split_config.json` | Chosen training window, split months and outlier cutoffs (no data) |
 | `reports/figures/` | Charts produced by the notebooks |
 | `requirements.txt` | Pinned Python environment |
@@ -28,9 +29,11 @@ Monthly `CRMLSSold<YYYYMM>.csv` and `CRMLSListing<YYYYMM>.csv` files from the ID
 
 ```bash
 pip install -r requirements.txt
-jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb
-jupyter nbconvert --to notebook --execute --inplace notebooks/02_preprocessing.ipynb
+python scripts/run_notebooks.py        # all notebooks, in order
+python scripts/run_notebooks.py 02     # only 02_preprocessing.ipynb
 ```
+
+**Reproducibility.** Every random step (target-encoding folds, gradient boosting) uses one seed, `RANDOM_STATE = 42` in `src/preprocessing.py`, and the notebooks also call `set_global_seed()`. The run script does not store execution timestamps, so rerunning unchanged code on unchanged data produces byte-identical notebooks, CSVs and charts. The one outside dependency is the street map in `01_exploration.ipynb`, which is downloaded from Esri on each run.
 
 ## Progress
 
