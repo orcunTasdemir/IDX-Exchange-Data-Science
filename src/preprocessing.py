@@ -78,6 +78,13 @@ def load_sold(data_dir):
     return pd.concat(frames, ignore_index=True)
 
 
+def load_clean(path):
+    """Read sfr_clean.csv (written by 02_preprocessing) with the column types the pipeline expects."""
+    return pd.read_csv(path, dtype={'ListingKey': str, 'ZIP5': str, 'CloseMonth': str,
+                                    'SourceMonth': str, 'CountyOrParish': str},
+                       parse_dates=['CloseDate'])
+
+
 # ---------------------------------------------------------------------------
 # Row-level cleaning (fixed rules, nothing learned from data)
 # ---------------------------------------------------------------------------

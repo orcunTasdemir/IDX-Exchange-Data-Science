@@ -11,9 +11,13 @@ Predicting `ClosePrice` (final sale price) for California single-family homes fr
 | `reports/01_exploration_memo.md` | Week 2: findings memo ([read it here](reports/01_exploration_memo.md)) |
 | `notebooks/02_preprocessing.ipynb` | Week 3: cleaning, encoding, chronological split, choice of training window |
 | `reports/02_preprocessing_memo.md` | Week 3: preprocessing memo ([read it here](reports/02_preprocessing_memo.md)) |
+| `notebooks/03_baseline_model.ipynb` | Week 4: linear regression baseline, test-month result, stability over time |
+| `reports/03_baseline_memo.md` | Week 4: baseline memo ([read it here](reports/03_baseline_memo.md)) |
 | `src/preprocessing.py` | Cleaning, splitting and preprocessing code shared by all notebooks |
+| `src/modeling.py` | Model wrapper (preprocessor + estimator on log price) and evaluation helpers |
 | `scripts/run_notebooks.py` | Re-runs the notebooks reproducibly |
 | `config/split_config.json` | Chosen training window, split months and outlier cutoffs (no data) |
+| `results/` | Metric tables (scores only, committed), e.g. `03_baseline_metrics.csv` |
 | `reports/figures/` | Charts produced by the notebooks |
 | `requirements.txt` | Pinned Python environment |
 
@@ -40,4 +44,5 @@ python scripts/run_notebooks.py 02     # only 02_preprocessing.ipynb
 - [x] Week 1: setup, data access
 - [x] Week 2: exploration (`01_exploration.ipynb`, [findings memo](reports/01_exploration_memo.md))
 - [x] Week 3: preprocessing (`02_preprocessing.ipynb`, cleaned CSVs, [memo](reports/02_preprocessing_memo.md))
-- [ ] Week 4: baseline model (`03_baseline_model.ipynb`)
+- [x] Week 4: baseline model (`03_baseline_model.ipynb`, [memo](reports/03_baseline_memo.md)): test-month R² 0.820, MdAPE 11.38%
+- [ ] Week 5: decision tree and random forest (`04_model_comparison.ipynb`)

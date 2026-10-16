@@ -1,0 +1,6 @@
+model,evaluation,eval_month,train_months,train_rows,eval_rows,R2,MAPE,MdAPE,MAE
+Linear regression (log price),validation (choosing settings),2026-03,2025-03 to 2026-02,127358,11354,0.822789,15.003725,11.401307,199255.654504
+Linear regression (log price),earlier month (stability),2025-04,2024-04 to 2025-03,134510,11653,0.844551,14.449109,10.828522,193771.319688
+Linear regression (log price),earlier month (stability),2025-07,2024-07 to 2025-06,130834,11889,0.845546,14.668982,11.001013,189016.785114
+Linear regression (log price),earlier month (stability),2025-10,2024-10 to 2025-09,129199,11804,0.842633,14.969748,11.159364,189405.291045
+Linear regression (log price),test (final result),2026-04,2025-04 to 2026-03,128330,12268,0.819795,15.170597,11.378041,207050.982550
