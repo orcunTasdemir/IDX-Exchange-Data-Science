@@ -13,6 +13,8 @@ Predicting `ClosePrice` (final sale price) for California single-family homes fr
 | `reports/02_preprocessing_memo.md` | Week 3: preprocessing memo ([read it here](reports/02_preprocessing_memo.md)) |
 | `notebooks/03_baseline_model.ipynb` | Week 4: linear regression baseline, test-month result, stability over time |
 | `reports/03_baseline_memo.md` | Week 4: baseline memo ([read it here](reports/03_baseline_memo.md)) |
+| `reports/03_meeting_memo.md` | Week 4: meeting memo, a shorter read-through version ([read it here](reports/03_meeting_memo.md)) |
+| `scripts/loss_comparison_03.py` | Week 4 side check: squared vs absolute loss for the linear model |
 | `src/preprocessing.py` | Cleaning, splitting and preprocessing code shared by all notebooks |
 | `src/modeling.py` | Model wrapper (preprocessor + estimator on log price) and evaluation helpers |
 | `scripts/run_notebooks.py` | Re-runs the notebooks reproducibly |
