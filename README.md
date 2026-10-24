@@ -15,6 +15,8 @@ Predicting `ClosePrice` (final sale price) for California single-family homes fr
 | `reports/03_baseline_memo.md` | Week 4: baseline memo ([read it here](reports/03_baseline_memo.md)) |
 | `reports/03_meeting_memo.md` | Week 4: meeting memo, a shorter read-through version ([read it here](reports/03_meeting_memo.md)) |
 | `scripts/loss_comparison_03.py` | Week 4 side check: squared vs absolute loss for the linear model |
+| `notebooks/04_model_comparison.ipynb` | Week 5: decision tree and random forest, tuned on the validation month, compared with the baseline |
+| `reports/04_meeting_memo.md` | Week 5: meeting memo ([read it here](reports/04_meeting_memo.md)) |
 | `src/preprocessing.py` | Cleaning, splitting and preprocessing code shared by all notebooks |
 | `src/modeling.py` | Model wrapper (preprocessor + estimator on log price) and evaluation helpers |
 | `scripts/run_notebooks.py` | Re-runs the notebooks reproducibly |
@@ -39,7 +41,7 @@ python scripts/run_notebooks.py        # all notebooks, in order
 python scripts/run_notebooks.py 02     # only 02_preprocessing.ipynb
 ```
 
-**Reproducibility.** Every random step (target-encoding folds, gradient boosting) uses one seed, `RANDOM_STATE = 42` in `src/preprocessing.py`, and the notebooks also call `set_global_seed()`. The run script does not store execution timestamps, so rerunning unchanged code on unchanged data produces byte-identical notebooks, CSVs and charts. The one outside dependency is the street map in `01_exploration.ipynb`, which is downloaded from Esri on each run.
+**Reproducibility.** Every random step (target-encoding folds, random forests, gradient boosting) uses one seed, `RANDOM_STATE = 42` in `src/preprocessing.py`, and the notebooks also call `set_global_seed()`. The run script does not store execution timestamps, so rerunning unchanged code on unchanged data produces byte-identical notebooks, CSVs and charts. The one outside dependency is the street map in `01_exploration.ipynb`, which is downloaded from Esri on each run.
 
 ## Progress
 
@@ -47,4 +49,5 @@ python scripts/run_notebooks.py 02     # only 02_preprocessing.ipynb
 - [x] Week 2: exploration (`01_exploration.ipynb`, [findings memo](reports/01_exploration_memo.md))
 - [x] Week 3: preprocessing (`02_preprocessing.ipynb`, cleaned CSVs, [memo](reports/02_preprocessing_memo.md))
 - [x] Week 4: baseline model (`03_baseline_model.ipynb`, [memo](reports/03_baseline_memo.md)): test-month R² 0.820, MdAPE 11.38%
-- [ ] Week 5: decision tree and random forest (`04_model_comparison.ipynb`)
+- [x] Week 5: decision tree and random forest (`04_model_comparison.ipynb`, [memo](reports/04_meeting_memo.md)): random forest test-month R² 0.885, MdAPE 7.76%
+- [ ] Week 6: feature engineering

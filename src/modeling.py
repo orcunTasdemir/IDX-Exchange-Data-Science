@@ -46,3 +46,22 @@ def error_by_group(y_true, y_pred, groups):
     return (df.groupby('group', observed=True)
               .agg(homes=('abs', 'size'), MdAPE=('abs', 'median'), MAPE=('abs', 'mean'),
                    median_signed_error=('signed', 'median')))
+
+
+def bootstrap_mdape_difference(y_true, pred_a, pred_b, n_resamples=2000, seed=prep.RANDOM_STATE):
+    """Paired bootstrap of MdAPE(a) - MdAPE(b) over the same homes.
+
+    Homes are resampled with replacement; for each resample the difference in
+    MdAPE between the two models is recomputed. Returns the observed
+    difference and the 2.5th and 97.5th percentiles of the resampled
+    differences (a 95% interval), all in percentage points.
+    """
+    y_true = np.asarray(y_true, dtype=float)
+    ape_a = np.abs(np.asarray(pred_a, dtype=float) - y_true) / y_true
+    ape_b = np.abs(np.asarray(pred_b, dtype=float) - y_true) / y_true
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, len(y_true), size=(n_resamples, len(y_true)))
+    diffs = 100 * (np.median(ape_a[idx], axis=1) - np.median(ape_b[idx], axis=1))
+    observed = 100 * (np.median(ape_a) - np.median(ape_b))
+    return {'difference': float(observed), 'ci_low': float(np.percentile(diffs, 2.5)),
+            'ci_high': float(np.percentile(diffs, 97.5))}
