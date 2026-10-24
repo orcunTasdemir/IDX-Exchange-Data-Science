@@ -25,6 +25,17 @@ The setup is the same as in Week 4, so the comparison is fair:
 - **Same target:** every model predicts the logarithm of the price. In Week 4, this halved the baseline's typical error compared with predicting dollars directly (11.4% against 18.8% on the validation month).
 - **Same measures.** Each starts from a home's percentage error, |predicted price − sale price| / sale price. **MdAPE** is the median of these errors (half of the homes are predicted within it) and is the headline. **MAPE** is their mean. **R²** is the share of the variation in prices that the model explains. **MAE** is the mean error in dollars.
 
+**Keeping choices away from the test month.** Every setting is chosen on one month, and the final score comes from a different month that played no part in any choice:
+
+![Months used for choosing settings and for the final result](figures/02_split_timeline.png)
+
+| Step | Trained on | Scored on | Used for |
+|---|---|---|---|
+| Choosing settings | March 2025 to February 2026 | **March 2026** (validation month) | picking each model's settings |
+| Final result | April 2025 to March 2026 | **April 2026** (test month) | one score per model, after all settings are fixed |
+
+Once the settings are fixed, March 2026 is no longer needed for choosing, so the final models are retrained with March included, using the frozen settings. April 2026 is never seen by any model before its single final score. The outlier cutoffs and everything the preprocessor learns (medians, ZIP-code averages, scaling) also come from the training months only.
+
 ## 2. Choosing each model's settings
 
 Unlike linear regression, tree models have settings that control how detailed they get. Each setting was chosen by its error on the validation month; the test month played no part.
@@ -66,6 +77,25 @@ The forest is best on every measure. Its typical error is about a third lower th
 The internship's best-practices document (IDX Exchange's written standard for building price-prediction models) requires that a more complex model beat the baseline by a margin that is clearly not chance. Two checks:
 
 **Check 1: the same comparison at earlier months.** As in Week 4, each model was retrained on the 12 months before April, July and October 2025 and scored on that month.
+
+*How these months were chosen.* A month can be evaluated only if it has 12 months of history before it (the data starts in January 2024, so the earliest is January 2025) and was not used for any decision (January to March 2026 were the validation months for choosing the 12-month window in Week 3, and March 2026 is where all settings are chosen). That leaves January to December 2025 as clean candidates. One month per quarter was picked in advance, three months apart in step with the April test month, without trying other sets:
+
+![Which months could be evaluated](figures/04_month_roles.png)
+
+*Each evaluated month gets its own model.* There is not one model scored on four months but four separate models, each trained from scratch on the 12 months before its evaluated month. Within each run, the evaluated month, and everything after it, is excluded from training. A month evaluated in an early run can still be a training month in a later run (hatched below): April 2025 is evaluated in run 1 and used for training in runs 2, 3 and 4. That is a different model, scored on a later month, so no model is ever scored on a month it trained on.
+
+![Training and evaluated months for each of the four runs](figures/04_evaluation_timeline.png)
+
+| Run | Trained on (12 months) | Evaluated on | Evaluated month in its own training? |
+|---|---|---|---|
+| 1 | April 2024 to March 2025 | April 2025 | no |
+| 2 | July 2024 to June 2025 | July 2025 | no |
+| 3 | October 2024 to September 2025 | October 2025 | no |
+| 4 (final) | April 2025 to March 2026 | April 2026 (test) | no |
+
+*Two limitations of this check.* First, no winter month is included; January 2025 was eligible but not picked, and January is the slowest month for sales. Second, runs 1 to 3 use the settings chosen on March 2026, a month that comes after them; strictly, each earlier run would re-choose its settings on its own preceding month. Neither affects the April 2026 test result. From Week 6 on, the check will use all twelve months of 2025, which covers every season.
+
+The results of the four runs:
 
 ![MdAPE and R² by evaluated month for the three models](figures/04_backtest.png)
 
@@ -155,8 +185,11 @@ It fits its training homes very closely, but that is not a problem in itself. Wh
 **Were the settings chosen by looking at the test month?**
 No. Every setting was chosen on the March 2026 validation month, and each final model was scored on April 2026 once.
 
-**Why not use more trees?**
-Going from 300 to 500 trees improved the validation MdAPE by 0.03 points, which is negligible, while training takes longer.
+**Why not use more trees? Is there a rule for that choice?**
+Going from 300 to 500 trees improved the validation MdAPE by 0.03 points. A standard rule for such choices is the *one-standard-error rule*: take the simplest setting whose validation error is within one standard error of the best one, because smaller differences are within the measurement's own noise. Redrawing the validation homes at random gives a standard error of about 0.09 points for the forest's MdAPE, so anything from 100 to 500 trees is a statistical tie. More trees cannot make a forest overfit, though; they only make its average more stable, so the number of trees is a trade-off between training time and a shrinking gain, and 300 is a reasonable point where the gains have flattened. For the decision tree, where depth and leaf size do control overfitting, the same rule would pick a slightly smaller tree (depth 16 instead of 20, validation MdAPE 9.63% against 9.55%), which is statistically tied with the chosen one. From Week 6 on, the one-standard-error rule will be the written-down way of choosing settings.
+
+**Were the evaluated months excluded from training?**
+Yes, within each run. Each evaluated month has its own model, trained only on the 12 months before it. A month evaluated in an early run can be training data for a later run, but that is a different model scored on a later month.
 
 **Is 7.8% good?**
 It is a large step from the baseline: 60% of test homes are now predicted within 10% of their sale price, against 45% before. The remaining weak spot is the most expensive fifth of homes, which is where Week 6's new inputs can be tested, and Week 7's gradient boosting, another way of combining many trees in which each new tree is built to correct the errors of the trees before it.
