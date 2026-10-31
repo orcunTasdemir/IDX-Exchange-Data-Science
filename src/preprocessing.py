@@ -16,10 +16,11 @@ import re
 
 import numpy as np
 import pandas as pd
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.base import BaseEstimator, TransformerMixin, clone
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import KFold
+from sklearn.neighbors import BallTree
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler, TargetEncoder
@@ -48,8 +49,16 @@ NUMERIC_FEATURES = ['BedroomsTotal', 'BathroomsTotalInteger', 'YearBuilt',
 COORD_FEATURES = ['Latitude', 'Longitude']
 BOOL_FEATURES = ['PoolPrivateYN', 'ViewYN', 'AttachedGarageYN', 'FireplaceYN', 'NewConstructionYN']
 COUNTY_FEATURE = 'CountyOrParish'                             # about 60 values: one-hot
-ZIP_FEATURE = 'ZIP5'                                          # about 3,000 values: target-encoded
+ZIP_FEATURE = 'ZIP5'                                          # about 1,600 values: target-encoded
 FEATURES = LOG_FEATURES + NUMERIC_FEATURES + COORD_FEATURES + BOOL_FEATURES + [COUNTY_FEATURE, ZIP_FEATURE]
+
+# Week 6 inputs, computed by src/features.py (see that module for definitions)
+ENGINEERED_FEATURES = ['AgeAtSale', 'BedBathRatio']
+TIME_FEATURES = ['SaleMonthSin', 'SaleMonthCos', 'SaleMonthIndex']
+DISTRICT_FEATURES = ['SchoolDistrictElem', 'SchoolDistrictHigh']
+# Computed inside the fitted pipeline from training sales (not a data column)
+NEARBY_FEATURE = 'NearbyPricePerSqft'
+PIPELINE_FEATURES = [NEARBY_FEATURE]
 
 TARGET = 'ClosePrice'
 ID_COLUMNS = ['ListingKey', 'CloseDate', 'CloseMonth', 'SourceMonth']
@@ -284,8 +293,85 @@ class GroupMedianCoordImputer(BaseEstimator, TransformerMixin):
         return np.array(COORD_FEATURES + ['coords_imputed'], dtype=object)
 
 
-def build_preprocessor():
-    """Unfitted ColumnTransformer turning the FEATURES columns into a numeric matrix."""
+class NearbySalesPricePerSqft(BaseEstimator, TransformerMixin):
+    """Median log price per square foot of the k nearest training sales.
+
+    Input columns, in order: Latitude, Longitude, LivingArea; ``y`` is the log
+    sale price (the model's target). ``fit`` stores the training sales.
+    ``fit_transform`` computes the feature for the training homes themselves and
+    leaves each home out of its own neighbors, so a home's own price never feeds
+    its own feature. ``transform`` (new homes) uses the k nearest training sales.
+    Homes without coordinates get a missing value.
+    """
+
+    def __init__(self, k=25):
+        self.k = k
+
+    def fit(self, X, y):
+        X = np.asarray(X, dtype=float)
+        xy, area = X[:, :2], X[:, 2]
+        ok = ~np.isnan(xy).any(axis=1) & (area > 0)
+        self.tree_ = BallTree(np.radians(xy[ok]), metric='haversine')
+        self.values_ = (np.asarray(y, dtype=float) - np.log(area))[ok]
+        self.train_ok_ = ok
+        self.n_features_in_ = X.shape[1]
+        return self
+
+    def _medians(self, xy, own_index=None):
+        out = np.full(len(xy), np.nan)
+        ok = ~np.isnan(xy).any(axis=1)
+        if not ok.any():
+            return out.reshape(-1, 1)
+        extra = 1 if own_index is not None else 0
+        _, idx = self.tree_.query(np.radians(xy[ok]), k=self.k + extra)
+        if own_index is not None:
+            # Drop the home itself (it may not be first when coordinates tie); else drop the farthest
+            own = own_index[ok][:, None]
+            is_self = idx == own
+            drop = np.where(is_self.any(axis=1), is_self.argmax(axis=1), self.k)
+            keep = np.ones_like(idx, dtype=bool)
+            keep[np.arange(len(idx)), drop] = False
+            idx = idx[keep].reshape(len(idx), self.k)
+        out[ok] = np.median(self.values_[idx], axis=1)
+        return out.reshape(-1, 1)
+
+    def fit_transform(self, X, y):
+        self.fit(X, y)
+        own_index = np.full(len(self.train_ok_), -1)
+        own_index[self.train_ok_] = np.arange(self.train_ok_.sum())
+        return self._medians(np.asarray(X, dtype=float)[:, :2], own_index=own_index)
+
+    def transform(self, X):
+        return self._medians(np.asarray(X, dtype=float)[:, :2])
+
+    def get_feature_names_out(self, input_features=None):
+        return np.array(['NearbyPricePerSqft'], dtype=object)
+
+
+def input_columns(features):
+    """Data columns a model needs for the given feature list (features built inside
+    the pipeline, such as NearbyPricePerSqft, are computed from other columns)."""
+    cols = [c for c in features if c not in PIPELINE_FEATURES]
+    if NEARBY_FEATURE in features:
+        missing = {'Latitude', 'Longitude', 'LivingArea'} - set(cols)
+        assert not missing, f'{NEARBY_FEATURE} needs {missing}'
+    return cols
+
+
+def build_preprocessor(features=None, nearby_k=25):
+    """Unfitted ColumnTransformer turning the given input columns into a numeric matrix.
+
+    ``features`` defaults to FEATURES (the Week 3 set). Week 6 inputs are
+    routed by name: ENGINEERED_FEATURES get the numeric treatment, TIME_FEATURES
+    are only standardized, and DISTRICT_FEATURES are target-encoded like ZIP code.
+    Coordinates, ZIP code and county are always required (the coordinate
+    imputer uses ZIP code and county).
+    """
+    features = FEATURES if features is None else list(features)
+    unknown = set(features) - set(FEATURES + ENGINEERED_FEATURES + TIME_FEATURES + DISTRICT_FEATURES
+                                  + PIPELINE_FEATURES)
+    assert not unknown, f'no preprocessing rule for {unknown}'
+    pick = lambda group: [c for c in group if c in features]
     log_numeric = Pipeline([
         ('clip', QuantileClipper()),
         ('log', FunctionTransformer(np.log1p, feature_names_out='one-to-one')),
@@ -312,14 +398,28 @@ def build_preprocessor():
                                   cv=KFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE))),
         ('scale', StandardScaler()),
     ])
-    return ColumnTransformer([
-        ('log_numeric', log_numeric, LOG_FEATURES),
-        ('numeric', numeric, NUMERIC_FEATURES),
+    blocks = [
+        ('log_numeric', log_numeric, pick(LOG_FEATURES)),
+        ('numeric', numeric, pick(NUMERIC_FEATURES)),
         ('coords', coords, COORD_FEATURES + [ZIP_FEATURE, COUNTY_FEATURE]),
-        ('booleans', booleans, BOOL_FEATURES),
+        ('booleans', booleans, pick(BOOL_FEATURES)),
         ('county', county, [COUNTY_FEATURE]),
         ('zip', zip_code, [ZIP_FEATURE]),
-    ], verbose_feature_names_out=True)
+    ]
+    if pick(ENGINEERED_FEATURES):
+        blocks.append(('engineered', clone(numeric), pick(ENGINEERED_FEATURES)))
+    if pick(TIME_FEATURES):
+        blocks.append(('time', StandardScaler(), pick(TIME_FEATURES)))
+    if pick(DISTRICT_FEATURES):
+        blocks.append(('districts', clone(zip_code), pick(DISTRICT_FEATURES)))
+    if NEARBY_FEATURE in features:
+        nearby = Pipeline([
+            ('nearby', NearbySalesPricePerSqft(k=nearby_k)),
+            ('impute', SimpleImputer(strategy='median', add_indicator=True)),
+            ('scale', StandardScaler()),
+        ])
+        blocks.append(('nearby', nearby, ['Latitude', 'Longitude', 'LivingArea']))
+    return ColumnTransformer([b for b in blocks if b[2]], verbose_feature_names_out=True)
 
 
 # ---------------------------------------------------------------------------

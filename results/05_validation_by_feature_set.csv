@@ -1,0 +1,16 @@
+feature set,model,settings,R2,MAPE,MdAPE,MAE,evaluation,eval_month
+Original (Week 3),Linear regression,-,0.822789,15.003725,11.401307,199255.654504,validation,2026-03
+Original (Week 3),Decision tree,"depth 16, leaf 10",0.849769,13.834946,9.629441,184009.054176,validation,2026-03
+Original (Week 3),Random forest,"0.33 of inputs, leaf 2",0.887767,11.319825,7.728077,154240.544944,validation,2026-03
+"+ age, bed/bath ratio",Linear regression,-,0.826700,14.853090,11.273896,197481.670330,validation,2026-03
+"+ age, bed/bath ratio",Decision tree,"depth 16, leaf 10",0.847990,13.919491,9.689144,185975.274064,validation,2026-03
+"+ age, bed/bath ratio",Random forest,"0.5 of inputs, leaf 2",0.888842,11.393836,7.719565,154421.185625,validation,2026-03
++ month of sale,Linear regression,-,0.826842,14.858522,11.248755,197423.526231,validation,2026-03
++ month of sale,Decision tree,"depth 16, leaf 10",0.845051,14.106056,9.786292,188356.674207,validation,2026-03
++ month of sale,Random forest,"0.33 of inputs, leaf 2",0.884924,11.489917,7.879998,156472.593632,validation,2026-03
++ school districts,Linear regression,-,0.828319,14.633308,11.061179,194981.251901,validation,2026-03
++ school districts,Decision tree,"depth 20, leaf 20",0.849327,13.813028,9.678692,185361.982344,validation,2026-03
++ school districts,Random forest,"0.33 of inputs, leaf 2",0.890899,11.336466,7.748233,153170.362578,validation,2026-03
++ nearby sales price per sq ft,Linear regression,-,0.863784,13.042664,9.508370,170377.727162,validation,2026-03
++ nearby sales price per sq ft,Decision tree,"depth 14, leaf 20",0.871388,13.208393,9.546819,174060.652366,validation,2026-03
++ nearby sales price per sq ft,Random forest,"0.2 of inputs, leaf 2",0.897342,10.984336,7.487907,147589.152940,validation,2026-03

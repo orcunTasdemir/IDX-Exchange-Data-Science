@@ -1,0 +1,11 @@
+model,window,MdAPE,gap_to_best,se_of_gap,within_1se,complexity
+Linear regression,6,9.857548,0.271638,0.054731,False,6
+Linear regression,9,9.722088,0.136178,0.044225,False,9
+Linear regression,12,9.628745,0.042834,0.038554,False,12
+Linear regression,18,9.585910,0.000000,0.000000,True,18
+Linear regression,24,9.601565,0.015655,0.035148,True,24
+Random forest,6,7.981815,0.548792,0.046960,False,6
+Random forest,9,7.791076,0.358053,0.040872,False,9
+Random forest,12,7.595083,0.162060,0.039735,False,12
+Random forest,18,7.546817,0.113793,0.033905,False,18
+Random forest,24,7.433024,0.000000,0.000000,True,24

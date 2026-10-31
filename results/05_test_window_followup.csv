@@ -1,0 +1,5 @@
+model,training window,R2,MAPE,MdAPE,MAE,within 10%,test homes,evaluation,eval_month
+Linear regression,18 months (2024-10 to 2026-03),0.864331,13.158974,9.451978,176538.766133,52.211162,12256,"test, window follow-up",2026-04
+Linear regression,12 months (for comparison),0.860261,13.264348,9.495675,178116.643957,52.151940,12268,"test, window follow-up",2026-04
+Random forest,24 months (2024-04 to 2026-03),0.900424,10.811265,7.401931,148862.466540,61.414108,12248,"test, window follow-up",2026-04
+Random forest,12 months (for comparison),0.889877,11.198338,7.664664,155195.338358,60.604826,12268,"test, window follow-up",2026-04

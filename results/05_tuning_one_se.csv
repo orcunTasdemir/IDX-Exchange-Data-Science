@@ -1,0 +1,181 @@
+feature set,model,setting,MdAPE,gap_to_best,se_of_gap,within_1se,complexity
+Original (Week 3),Decision tree,"depth 10, leaf 5",10.942137,1.388546,0.145691,False,917
+Original (Week 3),Decision tree,"depth 10, leaf 10",10.908221,1.354630,0.143209,False,863
+Original (Week 3),Decision tree,"depth 10, leaf 20",10.981206,1.427614,0.150659,False,784
+Original (Week 3),Decision tree,"depth 10, leaf 50",10.989919,1.436328,0.143834,False,639
+Original (Week 3),Decision tree,"depth 12, leaf 5",10.269403,0.715812,0.121530,False,2622
+Original (Week 3),Decision tree,"depth 12, leaf 10",10.168875,0.615284,0.115196,False,2214
+Original (Week 3),Decision tree,"depth 12, leaf 20",10.303176,0.749585,0.126255,False,1749
+Original (Week 3),Decision tree,"depth 12, leaf 50",10.322095,0.768504,0.133489,False,1169
+Original (Week 3),Decision tree,"depth 14, leaf 5",9.810598,0.257007,0.115124,False,5572
+Original (Week 3),Decision tree,"depth 14, leaf 10",9.738517,0.184926,0.100714,False,4166
+Original (Week 3),Decision tree,"depth 14, leaf 20",10.180030,0.626439,0.119482,False,2921
+Original (Week 3),Decision tree,"depth 14, leaf 50",10.315284,0.761693,0.133405,False,1629
+Original (Week 3),Decision tree,"depth 16, leaf 5",9.827890,0.274299,0.111042,False,9264
+Original (Week 3),Decision tree,"depth 16, leaf 10",9.629441,0.075850,0.077962,True,6215
+Original (Week 3),Decision tree,"depth 16, leaf 20",10.043016,0.489425,0.113296,False,3875
+Original (Week 3),Decision tree,"depth 16, leaf 50",10.162203,0.608612,0.130523,False,1836
+Original (Week 3),Decision tree,"depth 20, leaf 5",9.854980,0.301389,0.113547,False,15917
+Original (Week 3),Decision tree,"depth 20, leaf 10",9.553591,0.000000,0.000000,True,9010
+Original (Week 3),Decision tree,"depth 20, leaf 20",9.949119,0.395528,0.110761,False,4764
+Original (Week 3),Decision tree,"depth 20, leaf 50",10.137490,0.583899,0.127896,False,1930
+Original (Week 3),Decision tree,"depth None, leaf 5",10.059159,0.505568,0.126447,False,20457
+Original (Week 3),Decision tree,"depth None, leaf 10",9.555815,0.002224,0.038166,True,9964
+Original (Week 3),Decision tree,"depth None, leaf 20",9.949914,0.396323,0.111432,False,4913
+Original (Week 3),Decision tree,"depth None, leaf 50",10.139204,0.585613,0.128696,False,1942
+Original (Week 3),Random forest,"0.2 of inputs, leaf 1",7.716634,0.034342,0.057736,True,47791496
+Original (Week 3),Random forest,"0.2 of inputs, leaf 2",7.810429,0.128137,0.060492,False,17948914
+Original (Week 3),Random forest,"0.2 of inputs, leaf 5",8.115712,0.433421,0.068396,False,6315484
+Original (Week 3),Random forest,"0.33 of inputs, leaf 1",7.682292,0.000000,0.000000,True,47550016
+Original (Week 3),Random forest,"0.33 of inputs, leaf 2",7.728077,0.045785,0.046742,True,20326478
+Original (Week 3),Random forest,"0.33 of inputs, leaf 5",7.895425,0.213133,0.058989,False,7474312
+Original (Week 3),Random forest,"0.5 of inputs, leaf 1",7.786599,0.104308,0.049940,False,47255334
+Original (Week 3),Random forest,"0.5 of inputs, leaf 2",7.753956,0.071664,0.049158,False,20947248
+Original (Week 3),Random forest,"0.5 of inputs, leaf 5",7.882072,0.199780,0.057817,False,7735534
+Original (Week 3),Random forest,"0.75 of inputs, leaf 1",7.888245,0.205953,0.059057,False,47015286
+Original (Week 3),Random forest,"0.75 of inputs, leaf 2",7.891636,0.209344,0.059565,False,21017842
+Original (Week 3),Random forest,"0.75 of inputs, leaf 5",7.978347,0.296056,0.061584,False,7759408
+"+ age, bed/bath ratio",Decision tree,"depth 10, leaf 5",10.930011,1.240867,0.145579,False,911
+"+ age, bed/bath ratio",Decision tree,"depth 10, leaf 10",10.886483,1.197339,0.143583,False,861
+"+ age, bed/bath ratio",Decision tree,"depth 10, leaf 20",10.915747,1.226603,0.150480,False,785
+"+ age, bed/bath ratio",Decision tree,"depth 10, leaf 50",10.908118,1.218974,0.146643,False,639
+"+ age, bed/bath ratio",Decision tree,"depth 12, leaf 5",10.296625,0.607481,0.120600,False,2614
+"+ age, bed/bath ratio",Decision tree,"depth 12, leaf 10",10.239814,0.550669,0.111816,False,2218
+"+ age, bed/bath ratio",Decision tree,"depth 12, leaf 20",10.401987,0.712842,0.131559,False,1757
+"+ age, bed/bath ratio",Decision tree,"depth 12, leaf 50",10.340514,0.651370,0.134307,False,1177
+"+ age, bed/bath ratio",Decision tree,"depth 14, leaf 5",9.895120,0.205976,0.109214,False,5587
+"+ age, bed/bath ratio",Decision tree,"depth 14, leaf 10",9.804477,0.115333,0.083541,False,4193
+"+ age, bed/bath ratio",Decision tree,"depth 14, leaf 20",10.117447,0.428303,0.114642,False,2926
+"+ age, bed/bath ratio",Decision tree,"depth 14, leaf 50",10.203568,0.514424,0.124794,False,1646
+"+ age, bed/bath ratio",Decision tree,"depth 16, leaf 5",9.834264,0.145120,0.099520,False,9255
+"+ age, bed/bath ratio",Decision tree,"depth 16, leaf 10",9.689144,0.000000,0.000000,True,6235
+"+ age, bed/bath ratio",Decision tree,"depth 16, leaf 20",10.052252,0.363107,0.107467,False,3892
+"+ age, bed/bath ratio",Decision tree,"depth 16, leaf 50",10.126003,0.436858,0.123629,False,1852
+"+ age, bed/bath ratio",Decision tree,"depth 20, leaf 5",9.918086,0.228942,0.124585,False,15950
+"+ age, bed/bath ratio",Decision tree,"depth 20, leaf 10",9.693964,0.004819,0.080413,True,9012
+"+ age, bed/bath ratio",Decision tree,"depth 20, leaf 20",10.020504,0.331360,0.110718,False,4766
+"+ age, bed/bath ratio",Decision tree,"depth 20, leaf 50",10.081619,0.392475,0.123752,False,1945
+"+ age, bed/bath ratio",Decision tree,"depth None, leaf 5",10.165193,0.476049,0.136063,False,20445
+"+ age, bed/bath ratio",Decision tree,"depth None, leaf 10",9.718983,0.029839,0.082802,True,9991
+"+ age, bed/bath ratio",Decision tree,"depth None, leaf 20",10.040551,0.351407,0.112322,False,4921
+"+ age, bed/bath ratio",Decision tree,"depth None, leaf 50",10.084334,0.395190,0.123369,False,1955
+"+ age, bed/bath ratio",Random forest,"0.2 of inputs, leaf 1",7.767436,0.047871,0.061286,True,47802114
+"+ age, bed/bath ratio",Random forest,"0.2 of inputs, leaf 2",7.830287,0.110722,0.062143,False,17955276
+"+ age, bed/bath ratio",Random forest,"0.2 of inputs, leaf 5",8.147792,0.428227,0.070336,False,6351572
+"+ age, bed/bath ratio",Random forest,"0.33 of inputs, leaf 1",7.755658,0.036093,0.048239,True,47538108
+"+ age, bed/bath ratio",Random forest,"0.33 of inputs, leaf 2",7.779489,0.059924,0.046558,False,20432320
+"+ age, bed/bath ratio",Random forest,"0.33 of inputs, leaf 5",8.014718,0.295153,0.057096,False,7519436
+"+ age, bed/bath ratio",Random forest,"0.5 of inputs, leaf 1",7.789005,0.069440,0.044239,False,47247708
+"+ age, bed/bath ratio",Random forest,"0.5 of inputs, leaf 2",7.719565,0.000000,0.000000,True,20952210
+"+ age, bed/bath ratio",Random forest,"0.5 of inputs, leaf 5",7.939111,0.219546,0.046357,False,7737470
+"+ age, bed/bath ratio",Random forest,"0.75 of inputs, leaf 1",7.900111,0.180546,0.054514,False,47004406
+"+ age, bed/bath ratio",Random forest,"0.75 of inputs, leaf 2",7.913125,0.193560,0.044027,False,21014738
+"+ age, bed/bath ratio",Random forest,"0.75 of inputs, leaf 5",7.950835,0.231270,0.049207,False,7759546
++ month of sale,Decision tree,"depth 10, leaf 5",10.973280,1.186988,0.145946,False,914
++ month of sale,Decision tree,"depth 10, leaf 10",10.930034,1.143742,0.144824,False,861
++ month of sale,Decision tree,"depth 10, leaf 20",10.973280,1.186988,0.151347,False,786
++ month of sale,Decision tree,"depth 10, leaf 50",10.908118,1.121827,0.146927,False,640
++ month of sale,Decision tree,"depth 12, leaf 5",10.372168,0.585876,0.122574,False,2623
++ month of sale,Decision tree,"depth 12, leaf 10",10.289819,0.503527,0.111339,False,2221
++ month of sale,Decision tree,"depth 12, leaf 20",10.431261,0.644970,0.131024,False,1763
++ month of sale,Decision tree,"depth 12, leaf 50",10.333764,0.547472,0.134675,False,1176
++ month of sale,Decision tree,"depth 14, leaf 5",9.985249,0.198957,0.110928,False,5604
++ month of sale,Decision tree,"depth 14, leaf 10",9.934395,0.148103,0.083129,False,4204
++ month of sale,Decision tree,"depth 14, leaf 20",10.233850,0.447558,0.119098,False,2933
++ month of sale,Decision tree,"depth 14, leaf 50",10.203568,0.417276,0.125360,False,1638
++ month of sale,Decision tree,"depth 16, leaf 5",9.869747,0.083455,0.104045,True,9284
++ month of sale,Decision tree,"depth 16, leaf 10",9.786292,0.000000,0.000000,True,6255
++ month of sale,Decision tree,"depth 16, leaf 20",10.144308,0.358016,0.113184,False,3904
++ month of sale,Decision tree,"depth 16, leaf 50",10.162203,0.375911,0.125517,False,1845
++ month of sale,Decision tree,"depth 20, leaf 5",10.070300,0.284008,0.141188,False,16025
++ month of sale,Decision tree,"depth 20, leaf 10",9.835211,0.048919,0.080635,True,8992
++ month of sale,Decision tree,"depth 20, leaf 20",10.053775,0.267483,0.118340,False,4774
++ month of sale,Decision tree,"depth 20, leaf 50",10.138345,0.352053,0.124744,False,1938
++ month of sale,Decision tree,"depth None, leaf 5",10.344018,0.557727,0.141652,False,20388
++ month of sale,Decision tree,"depth None, leaf 10",9.971572,0.185280,0.082905,False,9949
++ month of sale,Decision tree,"depth None, leaf 20",10.078941,0.292649,0.120832,False,4928
++ month of sale,Decision tree,"depth None, leaf 50",10.138345,0.352053,0.124411,False,1947
++ month of sale,Random forest,"0.2 of inputs, leaf 1",7.899021,0.042231,0.054489,True,47727226
++ month of sale,Random forest,"0.2 of inputs, leaf 2",7.933691,0.076901,0.059363,False,19556606
++ month of sale,Random forest,"0.2 of inputs, leaf 5",8.175954,0.319165,0.069959,False,7083704
++ month of sale,Random forest,"0.33 of inputs, leaf 1",7.856789,0.000000,0.000000,True,47416718
++ month of sale,Random forest,"0.33 of inputs, leaf 2",7.879998,0.023209,0.046087,True,20808404
++ month of sale,Random forest,"0.33 of inputs, leaf 5",8.058201,0.201412,0.050854,False,7664342
++ month of sale,Random forest,"0.5 of inputs, leaf 1",7.974271,0.117482,0.047240,False,47133222
++ month of sale,Random forest,"0.5 of inputs, leaf 2",7.993401,0.136612,0.049307,False,20993956
++ month of sale,Random forest,"0.5 of inputs, leaf 5",8.062106,0.205317,0.052521,False,7742938
++ month of sale,Random forest,"0.75 of inputs, leaf 1",7.974765,0.117975,0.059057,False,46905624
++ month of sale,Random forest,"0.75 of inputs, leaf 2",7.989050,0.132261,0.059313,False,21007144
++ month of sale,Random forest,"0.75 of inputs, leaf 5",8.093368,0.236579,0.058477,False,7750384
++ school districts,Decision tree,"depth 10, leaf 5",10.639969,1.046277,0.119742,False,925
++ school districts,Decision tree,"depth 10, leaf 10",10.588726,0.995034,0.117659,False,881
++ school districts,Decision tree,"depth 10, leaf 20",10.611632,1.017940,0.121758,False,800
++ school districts,Decision tree,"depth 10, leaf 50",10.529978,0.936287,0.121476,False,681
++ school districts,Decision tree,"depth 12, leaf 5",10.050670,0.456978,0.116043,False,2661
++ school districts,Decision tree,"depth 12, leaf 10",10.161331,0.567639,0.119866,False,2312
++ school districts,Decision tree,"depth 12, leaf 20",10.183396,0.589704,0.120163,False,1876
++ school districts,Decision tree,"depth 12, leaf 50",10.228724,0.635033,0.116046,False,1241
++ school districts,Decision tree,"depth 14, leaf 5",9.666752,0.073060,0.084711,True,5747
++ school districts,Decision tree,"depth 14, leaf 10",9.749704,0.156012,0.103707,False,4394
++ school districts,Decision tree,"depth 14, leaf 20",9.829589,0.235897,0.115745,False,3053
++ school districts,Decision tree,"depth 14, leaf 50",10.015206,0.421514,0.124343,False,1653
++ school districts,Decision tree,"depth 16, leaf 5",9.593692,0.000000,0.000000,True,9508
++ school districts,Decision tree,"depth 16, leaf 10",9.775950,0.182258,0.109156,False,6470
++ school districts,Decision tree,"depth 16, leaf 20",9.774112,0.180420,0.113982,False,3990
++ school districts,Decision tree,"depth 16, leaf 50",9.980257,0.386565,0.120326,False,1850
++ school districts,Decision tree,"depth 20, leaf 5",9.811255,0.217563,0.102907,False,16242
++ school districts,Decision tree,"depth 20, leaf 10",9.897617,0.303925,0.114043,False,9096
++ school districts,Decision tree,"depth 20, leaf 20",9.678692,0.085000,0.120896,True,4828
++ school districts,Decision tree,"depth 20, leaf 50",10.005574,0.411882,0.122799,False,1934
++ school districts,Decision tree,"depth None, leaf 5",10.162152,0.568460,0.104749,False,20404
++ school districts,Decision tree,"depth None, leaf 10",9.989513,0.395822,0.129275,False,9964
++ school districts,Decision tree,"depth None, leaf 20",9.697319,0.103627,0.120066,True,4938
++ school districts,Decision tree,"depth None, leaf 50",10.006166,0.412475,0.122948,False,1941
++ school districts,Random forest,"0.2 of inputs, leaf 1",7.711073,0.000000,0.000000,True,47656256
++ school districts,Random forest,"0.2 of inputs, leaf 2",7.783815,0.072742,0.046874,False,20075902
++ school districts,Random forest,"0.2 of inputs, leaf 5",7.962102,0.251029,0.049756,False,7335436
++ school districts,Random forest,"0.33 of inputs, leaf 1",7.803467,0.092394,0.052831,False,47310456
++ school districts,Random forest,"0.33 of inputs, leaf 2",7.748233,0.037160,0.051644,True,20918582
++ school districts,Random forest,"0.33 of inputs, leaf 5",7.928936,0.217863,0.053440,False,7708960
++ school districts,Random forest,"0.5 of inputs, leaf 1",7.894449,0.183376,0.060607,False,47055234
++ school districts,Random forest,"0.5 of inputs, leaf 2",7.826347,0.115274,0.063975,False,21002732
++ school districts,Random forest,"0.5 of inputs, leaf 5",7.944159,0.233086,0.065535,False,7744402
++ school districts,Random forest,"0.75 of inputs, leaf 1",7.896821,0.185748,0.067882,False,46844242
++ school districts,Random forest,"0.75 of inputs, leaf 2",7.884993,0.173920,0.065986,False,21010484
++ school districts,Random forest,"0.75 of inputs, leaf 5",7.960868,0.249795,0.073493,False,7750620
++ nearby sales price per sq ft,Decision tree,"depth 10, leaf 5",10.113908,0.573380,0.124187,False,933
++ nearby sales price per sq ft,Decision tree,"depth 10, leaf 10",10.115602,0.575075,0.124488,False,900
++ nearby sales price per sq ft,Decision tree,"depth 10, leaf 20",10.088699,0.548172,0.119790,False,833
++ nearby sales price per sq ft,Decision tree,"depth 10, leaf 50",10.162998,0.622471,0.131499,False,708
++ nearby sales price per sq ft,Decision tree,"depth 12, leaf 5",9.848771,0.308244,0.119340,False,2718
++ nearby sales price per sq ft,Decision tree,"depth 12, leaf 10",9.780224,0.239697,0.117303,False,2410
++ nearby sales price per sq ft,Decision tree,"depth 12, leaf 20",9.800525,0.259998,0.096024,False,1954
++ nearby sales price per sq ft,Decision tree,"depth 12, leaf 50",9.907971,0.367444,0.123640,False,1330
++ nearby sales price per sq ft,Decision tree,"depth 14, leaf 5",9.570760,0.030232,0.118704,True,5950
++ nearby sales price per sq ft,Decision tree,"depth 14, leaf 10",9.563897,0.023370,0.107238,True,4593
++ nearby sales price per sq ft,Decision tree,"depth 14, leaf 20",9.546819,0.006292,0.064251,True,3270
++ nearby sales price per sq ft,Decision tree,"depth 14, leaf 50",9.688674,0.148147,0.110744,False,1772
++ nearby sales price per sq ft,Decision tree,"depth 16, leaf 5",9.674589,0.134062,0.124921,False,10007
++ nearby sales price per sq ft,Decision tree,"depth 16, leaf 10",9.650825,0.110297,0.109999,False,6847
++ nearby sales price per sq ft,Decision tree,"depth 16, leaf 20",9.540527,0.000000,0.000000,True,4215
++ nearby sales price per sq ft,Decision tree,"depth 16, leaf 50",9.699728,0.159201,0.113226,False,1920
++ nearby sales price per sq ft,Decision tree,"depth 20, leaf 5",10.112107,0.571580,0.140555,False,16829
++ nearby sales price per sq ft,Decision tree,"depth 20, leaf 10",9.780772,0.240245,0.117624,False,9358
++ nearby sales price per sq ft,Decision tree,"depth 20, leaf 20",9.636211,0.095684,0.043593,False,4859
++ nearby sales price per sq ft,Decision tree,"depth 20, leaf 50",9.692490,0.151963,0.112117,False,1959
++ nearby sales price per sq ft,Decision tree,"depth None, leaf 5",10.389503,0.848976,0.144346,False,20439
++ nearby sales price per sq ft,Decision tree,"depth None, leaf 10",9.864591,0.324064,0.123872,False,9944
++ nearby sales price per sq ft,Decision tree,"depth None, leaf 20",9.649901,0.109374,0.043918,False,4908
++ nearby sales price per sq ft,Decision tree,"depth None, leaf 50",9.689791,0.149264,0.111702,False,1960
++ nearby sales price per sq ft,Random forest,"0.2 of inputs, leaf 1",7.505898,0.017991,0.042525,True,47552108
++ nearby sales price per sq ft,Random forest,"0.2 of inputs, leaf 2",7.487907,0.000000,0.000000,True,20444280
++ nearby sales price per sq ft,Random forest,"0.2 of inputs, leaf 5",7.665057,0.177150,0.044625,False,7501346
++ nearby sales price per sq ft,Random forest,"0.33 of inputs, leaf 1",7.549789,0.061882,0.049711,False,47230428
++ nearby sales price per sq ft,Random forest,"0.33 of inputs, leaf 2",7.576789,0.088882,0.050844,False,20949008
++ nearby sales price per sq ft,Random forest,"0.33 of inputs, leaf 5",7.644060,0.156153,0.047977,False,7725076
++ nearby sales price per sq ft,Random forest,"0.5 of inputs, leaf 1",7.659813,0.171906,0.064657,False,46954764
++ nearby sales price per sq ft,Random forest,"0.5 of inputs, leaf 2",7.695490,0.207583,0.058335,False,21007946
++ nearby sales price per sq ft,Random forest,"0.5 of inputs, leaf 5",7.726288,0.238381,0.056195,False,7750980
++ nearby sales price per sq ft,Random forest,"0.75 of inputs, leaf 1",7.787803,0.299896,0.065970,False,46746642
++ nearby sales price per sq ft,Random forest,"0.75 of inputs, leaf 2",7.739186,0.251279,0.064142,False,21016520
++ nearby sales price per sq ft,Random forest,"0.75 of inputs, leaf 5",7.798092,0.310185,0.066897,False,7753830
