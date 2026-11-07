@@ -102,3 +102,21 @@ def one_se_select(y_true, preds, complexity, n_resamples=2000, seed=prep.RANDOM_
     table = pd.DataFrame(rows).set_index('setting')
     selected = table[table['within_1se']].sort_values(['complexity', 'MdAPE']).index[0]
     return selected, table
+
+
+def prepare_matrices(features, train, evaluation, nearby_k=25):
+    """Fit the preprocessor on the training rows once and return
+    ``(preprocessor, X_train, X_eval, log_y_train)``.
+
+    Fitting a model on these matrices gives exactly the same result as fitting
+    ``price_model`` (the preprocessor learns only from training rows and does
+    not depend on the model), but lets many model settings reuse one
+    preprocessing pass. Predictions on X_eval are in log price; exponentiate
+    them to get dollars.
+    """
+    cols = prep.input_columns(features)
+    log_y = np.log(train[prep.TARGET].to_numpy())
+    pre = prep.build_preprocessor(features, nearby_k=nearby_k)
+    X_train = pre.fit_transform(train[cols], log_y)
+    X_eval = pre.transform(evaluation[cols])
+    return pre, X_train, X_eval, log_y

@@ -114,6 +114,8 @@ The random forest keeps improving with more months: 7.59% at 12 months against 7
 
 **The random forest with the new inputs and 24 months is the best model so far:** MdAPE 7.40% and R² 0.900, against 7.76% and 0.885 in Week 5. The comparison table in Section 6 keeps 12 months so that it lines up with Weeks 4 and 5; the 24-month model is reported separately for that reason.
 
+> **Update after Week 7.** A follow-up check (Week 7 memo, Section 6) trained the forest on 12 and 24 months with both the original and the new inputs. More months helped with the original inputs too (by 0.24 points, against 0.16 with the new inputs). The 24-month gain therefore comes mainly from having more training data, not from the new inputs making older sales usable, as was suggested at the time.
+
 ## 9. Where the new inputs help
 
 ![Random forest MdAPE and typical error by price band](figures/05_error_by_band.png)

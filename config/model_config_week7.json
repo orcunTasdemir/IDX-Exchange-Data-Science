@@ -1,0 +1,49 @@
+{
+  "random_seed": 42,
+  "inputs": [
+    "LivingArea",
+    "LotSizeSquareFeet",
+    "BedroomsTotal",
+    "BathroomsTotalInteger",
+    "GarageSpaces",
+    "Stories",
+    "AssociationFeeMonthly",
+    "Latitude",
+    "Longitude",
+    "PoolPrivateYN",
+    "ViewYN",
+    "AttachedGarageYN",
+    "FireplaceYN",
+    "NewConstructionYN",
+    "CountyOrParish",
+    "ZIP5",
+    "AgeAtSale",
+    "BedBathRatio",
+    "SaleMonthSin",
+    "SaleMonthCos",
+    "SaleMonthIndex",
+    "SchoolDistrictElem",
+    "SchoolDistrictHigh",
+    "NearbyPricePerSqft"
+  ],
+  "nearby_k": 100,
+  "n_train_months": 24,
+  "lightgbm": {
+    "learning_rate": 0.05,
+    "max_depth": 8,
+    "n_estimators": 3000,
+    "num_leaves": 255,
+    "min_child_samples": 20,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "deterministic": true,
+    "n_jobs": 8
+  },
+  "random_forest": {
+    "n_estimators": 300,
+    "max_features": 0.2,
+    "min_samples_leaf": 2
+  },
+  "selection_rule": "one-standard-error rule, paired bootstrap over validation homes, fewest total leaves"
+}

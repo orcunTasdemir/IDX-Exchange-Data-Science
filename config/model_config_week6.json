@@ -2,10 +2,10 @@
   "random_seed": 42,
   "n_train_months": 12,
   "window_check_one_se_choice": {
-    "Linear regression": "18",
-    "Random forest": "24"
+    "Linear regression": 18,
+    "Random forest": 24
   },
-  "nearby_k": "100",
+  "nearby_k": 100,
   "feature_sets": {
     "Original (Week 3)": [
       "LivingArea",

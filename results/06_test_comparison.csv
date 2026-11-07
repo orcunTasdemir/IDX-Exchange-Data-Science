@@ -1,0 +1,6 @@
+model,R2,MAPE,MdAPE,MAE,within 10%,eval_month
+"Week 4 baseline: linear regression, original inputs, 12 months",0.819795,15.170597,11.378041,207050.982550,,2026-04
+"Week 5: random forest, original inputs, 12 months",0.885469,11.420767,7.760131,159355.261439,,2026-04
+"Linear regression, new inputs, 24 months",0.867130,13.095440,9.455252,175061.437083,52.016656,2026-04
+"Random forest, new inputs, 24 months",0.900424,10.811265,7.401931,148862.466540,61.414108,2026-04
+"LightGBM, new inputs, 24 months",0.920218,10.119984,6.995264,136275.688698,64.198236,2026-04

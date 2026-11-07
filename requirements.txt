@@ -14,3 +14,4 @@ geopandas==1.2.0
 shapely==2.2.0
 pyogrio==0.13.0
 pyproj==3.7.2
+lightgbm==4.7.0
