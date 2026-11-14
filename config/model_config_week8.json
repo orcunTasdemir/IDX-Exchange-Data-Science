@@ -1,0 +1,71 @@
+{
+  "random_seed": 42,
+  "final_model": "LightGBM on log(ClosePrice)",
+  "inputs": [
+    "LivingArea",
+    "LotSizeSquareFeet",
+    "BedroomsTotal",
+    "BathroomsTotalInteger",
+    "GarageSpaces",
+    "Stories",
+    "AssociationFeeMonthly",
+    "Latitude",
+    "Longitude",
+    "PoolPrivateYN",
+    "ViewYN",
+    "AttachedGarageYN",
+    "FireplaceYN",
+    "NewConstructionYN",
+    "CountyOrParish",
+    "ZIP5",
+    "AgeAtSale",
+    "BedBathRatio",
+    "SaleMonthSin",
+    "SaleMonthCos",
+    "SaleMonthIndex",
+    "SchoolDistrictElem",
+    "SchoolDistrictHigh",
+    "NearbyPricePerSqft"
+  ],
+  "nearby_k": 100,
+  "n_train_months": 24,
+  "lightgbm": {
+    "learning_rate": 0.05,
+    "max_depth": 8,
+    "n_estimators": 3000,
+    "num_leaves": 255,
+    "min_child_samples": 20,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "deterministic": true,
+    "n_jobs": 8
+  },
+  "grid_extension": {
+    "learning_rate": 0.05,
+    "depths": [
+      8,
+      9,
+      10
+    ],
+    "tree_counts": [
+      2000,
+      3000,
+      4000,
+      5000
+    ],
+    "changed_from_week7": false
+  },
+  "test_month": "2026-04",
+  "test_metrics": {
+    "homes": 12248,
+    "R2": 0.920218022329129,
+    "MAE": 136275.688697621,
+    "RMSE": 269319.63101759495,
+    "MAPE": 10.119983911033174,
+    "MdAPE": 6.995263781852025,
+    "within 5%": 37.597975179621166,
+    "within 10%": 64.19823644676683,
+    "within 20%": 88.09601567602874
+  }
+}

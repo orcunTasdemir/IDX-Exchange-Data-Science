@@ -23,6 +23,10 @@ Predicting `ClosePrice` (final sale price) for California single-family homes fr
 | `notebooks/06_advanced_models.ipynb` | Week 7: LightGBM gradient boosting, tuned on the validation month, compared with all earlier models (the task document calls it `05_advanced_models.ipynb`) |
 | `reports/06_meeting_memo.md` | Week 7: meeting memo ([read it here](reports/06_meeting_memo.md)) |
 | `config/model_config_week7.json` | Week 7 chosen LightGBM and random forest settings (no data) |
+| `notebooks/07_evaluation.ipynb` | Week 8: evaluation of the final model: all measures for every model, errors by price band, county, age, size and ZIP-code sales history, largest misses (the task document calls it `06_evaluation.ipynb`) |
+| `reports/07_meeting_memo.md` | Week 8: meeting memo ([read it here](reports/07_meeting_memo.md)) |
+| `results/metrics_summary.csv` | Week 8: R², MAE, RMSE, MAPE, MdAPE and share within 5/10/20% for every model on the test month |
+| `config/model_config_week8.json` | Final model settings and test-month scores (no data) |
 | `src/preprocessing.py` | Cleaning, splitting and preprocessing code shared by all notebooks |
 | `src/modeling.py` | Model wrapper (preprocessor + estimator on log price) and evaluation helpers |
 | `scripts/run_notebooks.py` | Re-runs the notebooks reproducibly |
@@ -60,4 +64,4 @@ python scripts/run_notebooks.py 02     # only 02_preprocessing.ipynb
 - [x] Week 5: decision tree and random forest (`04_model_comparison.ipynb`, [memo](reports/04_meeting_memo.md)): random forest test-month R² 0.885, MdAPE 7.76%
 - [x] Week 6: feature engineering (`05_feature_engineering.ipynb`, [memo](reports/05_meeting_memo.md)): random forest with new inputs and 24 training months, test-month R² 0.900, MdAPE 7.40%
 - [x] Week 7: gradient boosting (`06_advanced_models.ipynb`, [memo](reports/06_meeting_memo.md)): LightGBM with new inputs and 24 training months, test-month R² 0.920, MdAPE 7.00%
-- [ ] Week 8: evaluation (MAPE/MdAPE by price band, `metrics_summary.csv`)
+- [x] Week 8: evaluation (`07_evaluation.ipynb`, [memo](reports/07_meeting_memo.md), `results/metrics_summary.csv`): final LightGBM test-month MdAPE 7.00% (95% range 6.86% to 7.13%), 64% of homes within 10%

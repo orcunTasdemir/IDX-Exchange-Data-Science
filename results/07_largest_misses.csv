@@ -1,0 +1,16 @@
+measure,largest 5% of errors,other 95%
+homes,613.000000,11635.000000
+median percentage error (%),37.826641,6.574371
+priced too high (%),74.714519,43.635582
+median sale price,906000.000000,915000.000000
+median predicted price,1135640.448429,911922.661038
+median living area (sq ft),1908.000000,1828.000000
+median lot size (sq ft),8993.500000,7201.000000
+median age (years),61.000000,49.000000
+new construction (%),0.534759,3.156425
+view (%),70.588235,62.022451
+pool (%),20.400729,16.817545
+lot size missing (%),2.120718,1.993984
+location missing (%),1.141925,0.593038
+ZIP code with under 50 training sales (%),5.383361,2.905028
+median price per sq ft,479.386385,544.534413

@@ -120,3 +120,63 @@ def prepare_matrices(features, train, evaluation, nearby_k=25):
     X_train = pre.fit_transform(train[cols], log_y)
     X_eval = pre.transform(evaluation[cols])
     return pre, X_train, X_eval, log_y
+
+
+def full_metrics(y_true, y_pred):
+    """The Week 8 evaluation measures for one set of predictions, on the price scale.
+
+    R2, MAE and RMSE (dollars), MAPE and MdAPE (%), the share of homes predicted
+    within 5%, 10% and 20% of the sale price (%), and the median signed
+    percentage error (positive = predicted too high).
+    """
+    y_true, y_pred = np.asarray(y_true, dtype=float), np.asarray(y_pred, dtype=float)
+    signed = (y_pred - y_true) / y_true
+    ape = np.abs(signed)
+    return {
+        'homes': len(y_true),
+        **prep.regression_metrics(y_true, y_pred),
+        'RMSE': float(np.sqrt(np.mean((y_pred - y_true) ** 2))),
+        'within 5%': 100 * float(np.mean(ape <= 0.05)),
+        'within 10%': 100 * float(np.mean(ape <= 0.10)),
+        'within 20%': 100 * float(np.mean(ape <= 0.20)),
+        'median signed error': 100 * float(np.median(signed)),
+    }
+
+
+def segment_metrics(y_true, y_pred, groups):
+    """Per-group homes, MAPE, MdAPE, share within 10% and median signed error (all %)."""
+    y_true, y_pred = np.asarray(y_true, dtype=float), np.asarray(y_pred, dtype=float)
+    signed = 100 * (y_pred - y_true) / y_true
+    df = pd.DataFrame({'group': np.asarray(groups), 'signed': signed, 'abs': np.abs(signed)})
+    df['within'] = 100 * (df['abs'] <= 10)
+    return (df.groupby('group', observed=True, sort=False)
+              .agg(homes=('abs', 'size'), MAPE=('abs', 'mean'), MdAPE=('abs', 'median'),
+                   **{'within 10%': ('within', 'mean')}, **{'median signed error': ('signed', 'median')}))
+
+
+def bootstrap_intervals(y_true, y_pred, n_resamples=1000, seed=prep.RANDOM_STATE):
+    """95% bootstrap ranges for the main measures of one model.
+
+    The evaluation homes are resampled with replacement and each measure is
+    recomputed; returns a table with the observed value and the 2.5th and
+    97.5th percentiles for R2, MAPE, MdAPE, MAE, RMSE and the share within 10%.
+    """
+    y_true, y_pred = np.asarray(y_true, dtype=float), np.asarray(y_pred, dtype=float)
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, len(y_true), size=(n_resamples, len(y_true)))
+    yt, yp = y_true[idx], y_pred[idx]
+    err = yp - yt
+    ape = np.abs(err) / yt
+    ss_res = (err ** 2).sum(axis=1)
+    ss_tot = ((yt - yt.mean(axis=1, keepdims=True)) ** 2).sum(axis=1)
+    draws = {
+        'R2': 1 - ss_res / ss_tot,
+        'MAPE': 100 * ape.mean(axis=1),
+        'MdAPE': 100 * np.median(ape, axis=1),
+        'MAE': np.abs(err).mean(axis=1),
+        'RMSE': np.sqrt((err ** 2).mean(axis=1)),
+        'within 10%': 100 * (ape <= 0.10).mean(axis=1),
+    }
+    observed = full_metrics(y_true, y_pred)
+    return pd.DataFrame({m: {'value': observed[m], '95% low': np.percentile(d, 2.5), '95% high': np.percentile(d, 97.5)}
+                         for m, d in draws.items()}).T
